@@ -3,20 +3,25 @@ Sample app to show off building a Python/Docker app in Infrabox
 
 ## Dev/Tests
 
-Use Python 3.7 environment.
+Use Docker:
 
-Install test requirements:
-```bash
-pip install -r requirements-dev.txt
-```
+1. Build the Docker image:
+    ```bash
+    docker build -t test-sample-app -f tests/Dockerfile .
+    ```
+2. Run the tests:
+    ```bash
+    docker run -it --rm -v $PWD:/usr/src/app test-sample-app
+    ```
 
-Run tests:
-```bash
-python -m pytest tests/test_main.py
-```
 
 ## Run application
 
-```bash
-python sample/main.py
-```
+1. Build the Docker image:
+    ```bash
+    docker build -t sample-app .
+    ```
+2. Run the tests:
+    ```bash
+    docker run -it --rm sample-app
+    ```
