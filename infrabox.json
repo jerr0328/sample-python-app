@@ -27,7 +27,7 @@
       "deployments": [
         {
           "type": "docker-registry",
-          "host": "jerr0328",
+          "host": "docker.io/jerr0328",
           "repository": "sample-app",
           "username": "jerr0328",
           "password": {
