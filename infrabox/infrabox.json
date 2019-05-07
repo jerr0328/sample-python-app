@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "type": "docker",
+      "name": "test",
+      "build_context": "../..",
+      "resources": {
+        "limits": {
+          "cpu": 1,
+          "memory": 512
+        }
+      },
+      "build_only": false,
+      "docker_file": "tests/Dockerfile"
+    },
+    {
+      "type": "docker",
+      "name": "sample-app",
+      "build_context": "../..",
+      "docker_file": "Dockerfile",
+      "build_only": true,
+      "resources": {
+        "limits": {
+          "cpu": 1,
+          "memory": 512
+        }
+      },
+      "deployments": [
+        {
+          "type": "docker-registry",
+          "host": "docker.io/jerr0328",
+          "repository": "sample-app",
+          "username": "jerr0328",
+          "password": {
+            "$secret": "DOCKER_PASSWORD"
+          }
+        }
+      ],
+      "depends_on": [
+        "test"
+      ]
+    }
+  ]
+}
